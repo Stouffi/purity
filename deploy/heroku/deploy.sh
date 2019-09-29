@@ -10,6 +10,6 @@ cp -f deploy/heroku/package.json package.json
 cp deploy/heroku/index.js output
 git add -A
 git commit -m "deploy"
-git push heroku master
+git push heroku +master
 git reset --hard HEAD^
 git stash pop
