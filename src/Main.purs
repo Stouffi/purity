@@ -1,9 +1,15 @@
 module Main where
 
 import Prelude
+import Control.Monad.Indexed ((:*>))
 import Effect (Effect)
-import Effect.Console (log)
+import Hyper.Node.Server (defaultOptionsWithLogging, runServer)
+import Hyper.Response (closeHeaders, respond, writeStatus)
+import Hyper.Status (statusOK)
 
 main :: Effect Unit
-main = do
-  log "Hello sailor!"
+main =
+  let app = writeStatus statusOK
+            :*> closeHeaders
+            :*> respond "Hello, Hyper!"
+  in runServer defaultOptionsWithLogging {} app

@@ -1,0 +1,1 @@
+require('./Main/index.js').main()
